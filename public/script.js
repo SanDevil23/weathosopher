@@ -1,3 +1,6 @@
+
+//import {API_key} from "./api.js" 
+
 let weather = {
     "apiK":"507bdad56008fd251e34454c83860e49",
     fetchWeather: function(city) {
@@ -22,10 +25,10 @@ let weather = {
         document.querySelector(".desc").innerText = "Description: " + description;
     },
     search: function(){
-        this.fetchWeather(document.querySelector(".searchbar").value);
+        this.fetchWeather(document.querySelector("#searchbar").value);
     }
 };
 
 document.querySelector(".search button").addEventListener("click", function(){
-    weather.search(); 
+    weather.search();
 });

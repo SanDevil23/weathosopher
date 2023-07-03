@@ -1,6 +1,6 @@
 body{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-image: url(https://www.survivingwithandroid.com/wp-content/uploads/2014/11/android_weather_app.jpg);
+    background-image: url("https://www.survivingwithandroid.com/wp-content/uploads/2014/11/android_weather_app.jpg");
 }
 
 .top{
