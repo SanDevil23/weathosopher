@@ -3,10 +3,8 @@ import Card from "../components/Card";
 
 const Weather = () => {
   return (
-    <div className="w-screen p-3">
-      <h1 className="text-center text-3xl font-semibold lg:text-6xl tracking-widest">
-        Weathosopher
-      </h1>
+    <div className="p-5 h-screen bg-gradient-to-t to-cyan-300 from-teal-900">
+
       <Card />
     </div>
   );

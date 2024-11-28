@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from "axios"
 
 
@@ -11,28 +11,28 @@ function Card() {
     const [icon, setIcon] = useState("");
 
 
-    let input = "Delhi";
-
-    const getCity = () =>{
+    let input = "New Delhi";
+    const setInput = () => {
         input = document.getElementById('loc').value;
-        console.log(input);
-
-        if (input !== "")
-            getData();
-    }
-
-
+    };
+    
+    
     const getData = async() =>{
-        const apiK = "507bdad56008fd251e34454c83860e49";
-        const api_url = `https://api.openweathermap.org/data/2.5/weather?q=${input}&units=metric&appid=${apiK}`;
-        const {data} = await axios.get(api_url);
-        console.log(data);
-        setCity(data.name);
-        setTemp(data.main.temp);
-        setHumidity(data.main.humidity);
-        setSpeed(data.wind.speed);
-        setDesc(data.weather[0].description);
-        setIcon(data.weather[0].icon);
+        try {
+
+            const apiK = "507bdad56008fd251e34454c83860e49";
+            const api_url = `https://api.openweathermap.org/data/2.5/weather?q=${input}&units=metric&appid=${apiK}`;
+            const {data} = await axios.get(api_url);
+            console.log(data);
+            setCity(data.name);
+            setTemp(data.main.temp);
+            setHumidity(data.main.humidity);
+            setSpeed(data.wind.speed);
+            setDesc(data.weather[0].description);
+            setIcon(data.weather[0].icon);
+        } catch (err) {
+            console.log(err)
+        }
         // const {name} = data;
         // const {icon, description} = data.weather[0];
         // const {temp, humidity} = data.main;
@@ -77,23 +77,33 @@ function Card() {
     //     weather.search();
     // });
     
+    useEffect(() => {
+      getData();
+    }, []);
+    
     return (
-    <div>
-        <div className='text-xl mt-6'>
+    <div className='flex flex-col items-center'>
+        <div className='flex flex-col text-xl mt-6 w-1/4'>
             {/* <label htmlFor="city">Enter City</label> */}
-            <input className="block text-lg w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500" type="text" id='loc' onClick={getCity} placeholder='Enter City'/>
-            <input className="px-4 py-2 mt-2 rounded text-blue-500 font-bold border border-blue-500 bg-white hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" type="submit" onClick={getCity}/>
+            <input className="block text-lg  bg-sky-900 opacity-90 text-white w-full p-2 rounded-xl focus:outline-none "  type="text" id='loc' placeholder='Enter City' onChange={setInput}/>
+            <button className="p-2 mt-2 w-1/4 rounded text-blue-900 font-bold bg-white focus:outline-none  focus:ring-0 active:translate-y-2" onClick={getData} placeholder='Submit'>Check</button>
         </div>
 
-        <div className="p-5 mt-5 text-xl font-medium leading-loose bg-slate-200">
-            <p><b>City : </b> {city}</p>
-            <p><b>Temperature : </b>{temp}°Celsius</p>
-            <p><b>Humidity : </b>{humidity}%</p>
-            <p><b>Wind Speed : </b>{speed} km/h</p>
-            <p><b>Description : </b>{desc}</p>
+        <div className="grid grid-cols-3 p-5 mt-5 w-1/3 rounded-xl items-center text-xl font-medium leading-loose bg-cyan-700 text-slate-50">
+            <div className='col-span-3 text-4xl font-bold'>{city}</div>
+            <div className='col-span-3 row-span-2 mt-10'>
+                {desc}
+            </div>
+            <div className='col-span-2 row-span-2 text-2xl font-semibold'>
+                {temp}
+            </div>
+
+            <div>
+                {humidity}
+            </div>
         </div>
 
-        <button className="text-xl px-4 py-2 mt-2 rounded text-blue-500 font-bold border border-blue-500 bg-white hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" type="submit"><a href="/">Back</a></button>
+        {/* <button className="text-xl px-4 py-2 mt-2 rounded text-blue-500 font-bold border border-blue-500 bg-white hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" type="submit"><a href="/">Clear</a></button> */}
 
     </div>
   )
