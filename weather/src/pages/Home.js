@@ -1,24 +1,30 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Lottie from "lottie-react";
 // import weather_anim from "../animations/weather_anim.json";
+// import { Link } from "react-router-dom";
+// import City from '../components/CityData';
+import React, { useState } from "react";
+import Lottie from "lottie-react";
 import globe from '../animations/Globe.json'
 import Weather from "./Weather";
+import Autocomplete from "../components/Autocomplete";
+
 
 const Home = () => {
 
-  const [toggle, setToggle] = useState(false);
+  // const staticData = City;
+  // const fetchSuggestions = async(query)=>{
+  //   // return results
+  // }
 
+  const [toggle, setToggle] = useState(false);
   const handleToggle = () => {
     setToggle(true);
   }
-
 
   return (
     <>
     {toggle ? <Weather/> :
       <div>
-        <div className="grid grid-cols-2 bg-cyan-300 w-screen h-screen p-10">
+        <div className="grid grid-cols-2 bg-cyan-300 w-full h-screen p-10">
           <div className="self-center">
             <div className="p-3 text-6xl text-sky-950 text-center font-extrabold lg:text-8xl ">
             Weathosopher
@@ -30,13 +36,26 @@ const Home = () => {
             </button>
             </h3>
           </div>
-          <div className="w-1/2 p-10 flex self-center justify-center items-center">
+          <div className="w-full p-10 flex self-center justify-center items-center ">
           <Lottie animationData={globe}/>
           </div>
         </div>
         <Weather/>
+
+        {/* <Autocomplete
+          placeholder = {"Enter City"}
+          staticData = {staticData}
+          fetchSuggestions = {fetchSuggestions}
+          dataKey = {""}
+          customLoading = {<>Loading ......</>}
+          onSelect = {(res) => console.log(res)}
+          onChange = {(input)=> {}}
+          onBlur = {(e)=>{}}
+          onFocus = {(e)=> {}}
+          customStyles = {{}}
+        /> */}
           <div className=" text-white">
-            <p className="text-center p-5 text-blue-950">Copyright © 2023 SanDevil23. All Rights Reserved.</p>
+            <p className="text-center p-5 bg-teal-900 text-white">Copyright © 2023 SanDevil23. All Rights Reserved.</p>
           </div>
       </div>
     }
