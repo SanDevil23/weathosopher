@@ -1,11 +1,12 @@
 // import weather_anim from "../animations/weather_anim.json";
 // import { Link } from "react-router-dom";
 // import City from '../components/CityData';
+// import Autocomplete from "../components/Autocomplete";
 import React, { useState } from "react";
 import Lottie from "lottie-react";
 import globe from '../animations/Globe.json'
 import Weather from "./Weather";
-import Autocomplete from "../components/Autocomplete";
+import About from "../components/About";
 
 
 const Home = () => {
@@ -17,12 +18,12 @@ const Home = () => {
 
   const [toggle, setToggle] = useState(false);
   const handleToggle = () => {
-    setToggle(true);
+    setToggle(!toggle);
   }
 
   return (
     <>
-    {toggle ? <Weather/> :
+    {toggle ? <About handleToggle={handleToggle}/> :
       <div>
         <div className="grid grid-cols-2 bg-cyan-300 w-full h-screen p-10">
           <div className="self-center">
@@ -31,7 +32,7 @@ const Home = () => {
             </div>
             <h3 className="text-2xl text-sky-900 text-center p-5 font-semibold">
             What's the weather around the world today ? <br></br>
-            <button onClick={handleToggle} className="animate-bounce mt-7 text-white font-bold bg-teal-700 hover:bg-sky-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500  p-2  border-none border-black rounded-xl tracking-wide">
+            <button onClick={handleToggle} className="animate-bounce mt-7 text-white font-bold bg-teal-700 hover:bg-sky-900 focus:outline-none  p-2  border-none border-black rounded-xl tracking-wide">
             Check Weather
             </button>
             </h3>

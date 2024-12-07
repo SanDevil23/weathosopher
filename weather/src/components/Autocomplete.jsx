@@ -62,13 +62,13 @@ const Autocomplete = ({
     const handleSuggestionClick = (suggestion) => {
         setInputValue(dataKey? suggestion[dataKey]: suggestion);
         onSelect(suggestion);
-        setSuggestions([])
+        setSuggestions([]);
     }
     
   return (
     <div>
       <input 
-        className='block text-lg  bg-sky-900 opacity-90 text-slate-400 w-full p-2 rounded-xl focus:outline-none '
+        className='block text-lg  bg-sky-900 opacity-90 text-slate-300 w-full p-2 focus:outline-none'
         type='text'
         value={inputValue}
         placeholder={placeholder}
@@ -77,7 +77,7 @@ const Autocomplete = ({
         onChange={handleInputChange}
       />
     {(suggestions.length>0 || loading || error) && (
-        <ul>
+        <ul className='bg-sky-900 text-slate-200 cursor-pointer'>
             {error && <div>{error}</div>}
             {loading && <div>{customLoading}</div>}
             <SuggestionsList

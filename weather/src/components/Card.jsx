@@ -7,6 +7,7 @@ function Card() {
 
     const staticData = City;
     // const [data, setData] = useState({});
+    const [input, setInput] = useState("Leh");
     const [city, setCity] = useState("");
     const [temp, setTemp] = useState("");
     const [humidity, setHumidity] = useState("");
@@ -16,10 +17,11 @@ function Card() {
     const [min, setMin] = useState("");
     const [max, setMax] = useState("");
 
-    let input = "leh";
-    const setInput = () => {
-        input = document.getElementById('loc').value;
-    };
+    // const setInput = (city) => {
+        
+
+    //     console.log(`cityName = ${input}`)
+    // };
     
     const fetchSuggestions = () => {
         // return dynamic data
@@ -89,7 +91,7 @@ function Card() {
     
     useEffect(() => {
       getData();
-    }, []);
+    }, [input]);
     
     return (
     <div className='flex flex-col items-center'>
@@ -101,7 +103,7 @@ function Card() {
                 fetchSuggestions = {fetchSuggestions}
                 dataKey = {""}
                 customLoading = {<>Loading ......</>}
-                onSelect = {(res) => console.log(res)}
+                onSelect = {(res) => setInput(res)}
                 onChange = {(input)=> {}}
                 onBlur = {(e)=>{}}
                 onFocus = {(e)=> {}}

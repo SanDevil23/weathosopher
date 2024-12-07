@@ -30,7 +30,7 @@ const SuggestionsList = ({
         const currSuggestion = suggestion;
 
         return (
-          <li 
+          <li className='hover:bg-sky-800 p-2 w-full' 
             key={index}
             onClick = {()=> onSuggestionClick(suggestion)}
           >
